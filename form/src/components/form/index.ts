@@ -1,12 +1,11 @@
 import { LitElement, html, property} from 'lit-element';
 import {reducer} from './state/reducer';
 import {ACTION_CART_ADD_TO_LIST_REQUEST} from './state/actions';
-//import '../../components/input';
-import '../../../../lib/state-input/dist/app.dbd358263e73be3f45e9'
+import '../../components/input';
 import '@material/mwc-button';
 import {get} from '@rakoon-badshah/dynamic-redux';
 
-export class MyForm extends LitElement {
+export class NameForm extends LitElement {
 
   @property({type : String})  
   propPath="app";
@@ -53,6 +52,13 @@ export class MyForm extends LitElement {
       nickName: this.nickName
     };
     this.store.dispatch(ACTION_CART_ADD_TO_LIST_REQUEST(data));
+    ////////////////////////////___________EXTRA CODE____________//////////////////////////////////////////////////
+    var event = new CustomEvent('CART_ADD_TO_CART', { detail: {
+      formType:"names",
+      payload: data
+    } });
+    window.dispatchEvent(event);
+    //////////////////////////___________EXTRA CODE____________/////////////////////////////////////////////////////
   }
 }
-customElements.define('my-form', MyForm);
+customElements.define('name-form', NameForm);

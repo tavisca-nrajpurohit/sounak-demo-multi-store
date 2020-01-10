@@ -18,10 +18,15 @@ return newState;
 
 
 export const reducer = (propPath) => (state = initialState, action)=>{
-    switch(action.type){
-        case CART_ADD_TO_LIST_REQUEST:
-            return formSubmitted(state,action);
-        default:
-            return state;
-    };
+    if(action.formType=="names"){
+        switch(action.type){
+            case CART_ADD_TO_LIST_REQUEST:
+                return formSubmitted(state,action);
+            default:
+                return state;
+        };
+    }else{
+        return state;
+    }
+    
 }
